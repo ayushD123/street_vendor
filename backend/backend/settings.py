@@ -115,10 +115,13 @@ DATABASES = {
 
 # If DATABASE_URL is provided, use it
 if 'DATABASE_URL' in os.environ:
-    DATABASES['default'] = dj_database_url.config(
+    db_config = dj_database_url.config(
         conn_max_age=600,
         conn_health_checks=True,
     )
+    # Ensure the engine is set to PostGIS
+    db_config['ENGINE'] = 'django.contrib.gis.db.backends.postgis'
+    DATABASES['default'] = db_config
 
 
 # Password validation
