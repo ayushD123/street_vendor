@@ -103,12 +103,22 @@ if os.name == 'nt':  # Windows
     PROJ_LIBRARY_PATH = r'C:\OSGeo4W\bin\proj_9.dll'
 
 DATABASES = {
-    'default': dj_database_url.config(
-        default=os.environ.get('DATABASE_URL', 'postgres://postgres:admin@localhost:5432/vendor_tracker'),
+    'default': {
+        'ENGINE': 'django.contrib.gis.db.backends.postgis',
+        'NAME': os.environ.get('POSTGRES_DATABASE', 'vendor_tracker'),
+        'USER': os.environ.get('POSTGRES_USER', 'postgres'),
+        'PASSWORD': os.environ.get('POSTGRES_PASSWORD', 'admin'),
+        'HOST': os.environ.get('POSTGRES_HOST', 'localhost'),
+        'PORT': os.environ.get('POSTGRES_PORT', '5432'),
+    }
+}
+
+# If DATABASE_URL is provided, use it
+if 'DATABASE_URL' in os.environ:
+    DATABASES['default'] = dj_database_url.config(
         conn_max_age=600,
         conn_health_checks=True,
     )
-}
 
 
 # Password validation
