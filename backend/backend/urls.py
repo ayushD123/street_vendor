@@ -13,6 +13,11 @@ router.register(r'categories', VendorCategoryViewSet)
 router.register(r'locations', VendorLocationViewSet)
 router.register(r'verifications', LocationVerificationViewSet)
 
+# Admin site configuration
+admin.site.site_header = "Street Vendor Admin"
+admin.site.site_title = "Street Vendor Admin Portal"
+admin.site.index_title = "Welcome to Street Vendor Admin Portal"
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include(router.urls)),

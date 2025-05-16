@@ -246,3 +246,18 @@ LOGGING = {
         'propagate': True,
     },
 }
+
+# Admin site configuration
+ADMIN_SITE_HEADER = "Street Vendor Admin"
+ADMIN_SITE_TITLE = "Street Vendor Admin Portal"
+ADMIN_INDEX_TITLE = "Welcome to Street Vendor Admin Portal"
+
+# Session settings
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_HTTPONLY = True
+CSRF_COOKIE_HTTPONLY = True
+SESSION_COOKIE_SAMESITE = 'Lax'
+CSRF_COOKIE_SAMESITE = 'Lax'
+
+
